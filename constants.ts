@@ -54,7 +54,7 @@ export const OWNER_DISPLAY_NAMES: Record<string, Record<Language, string>> = {
   "Pa Ty": { [Language.ENGLISH]: "Pa Ty", [Language.KHMER]: "ប៉ា ទី" },
   "Pa Nith": { [Language.ENGLISH]: "Pa Nith", [Language.KHMER]: "ប៉ា និត" },
   "Viphou": { [Language.ENGLISH]: "Viphou", [Language.KHMER]: "វិភូ" },
-  "Virakboth": { [Language.ENGLISH]: "Virakboth", [Language.KHMER]: "វីរៈបុត្រ" },
+  "Virakboth": { [Language.ENGLISH]: "Virakboth", [Language.KHMER]: "វិរៈបុត្រ" },
   "Pu Da": { [Language.ENGLISH]: "Pu Da", [Language.KHMER]: "ពូ ដា" },
   "Lok Ta": { [Language.ENGLISH]: "Lok Ta", [Language.KHMER]: "លោកតា" },
   "Lok Yey": { [Language.ENGLISH]: "Lok Yey", [Language.KHMER]: "លោកយាយ" },

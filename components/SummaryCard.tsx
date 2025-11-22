@@ -18,14 +18,14 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ ownerName, guests, onC
   return (
     <button 
       onClick={onClick}
-      className="group relative flex flex-col items-center justify-between p-5 bg-white rounded-3xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-100 active:scale-[0.98] transition-all duration-300 hover:shadow-md hover:border-primary-200 h-44 w-full overflow-hidden"
+      className="group relative flex flex-col items-center justify-between p-4 bg-white rounded-3xl shadow-[0_2px_8px_rgba(0,0,0,0.04)] border border-slate-100 active:scale-[0.98] transition-all duration-300 hover:shadow-md hover:border-primary-200 h-40 w-full overflow-hidden"
     >
       {/* Decorative Background Blob */}
       <div className="absolute -top-10 -right-10 w-24 h-24 bg-primary-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl" />
       
       {/* Top Label */}
       <div className="w-full text-left z-10">
-        <h3 className={`font-black text-slate-900 truncate leading-relaxed pb-1 px-1 -mx-1 text-xl`}>
+        <h3 className={`font-black text-slate-900 truncate leading-relaxed pb-1 px-1 -mx-1 text-lg`}>
           {displayName}
         </h3>
       </div>
@@ -39,11 +39,11 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ ownerName, guests, onC
 
       {/* Bottom Label */}
       <div className="w-full flex items-center justify-between z-10 mt-auto pt-2">
-        <span className="text-sm font-bold text-slate-400 uppercase tracking-widest leading-normal pb-0.5 px-0.5">
+        <span className="text-xs font-bold text-slate-400 uppercase tracking-widest leading-normal pb-0.5 px-0.5">
           {language === Language.KHMER ? 'ភ្ញៀវ' : 'GUESTS'}
         </span>
-        <div className="w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">
-            <Users className="w-3.5 h-3.5" />
+        <div className="w-6 h-6 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">
+            <Users className="w-3 h-3" />
         </div>
       </div>
     </button>
