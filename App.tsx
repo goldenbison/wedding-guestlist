@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { GuestList, Language, OWNERS, OwnerName, Guest } from './types';
-import { TRANSLATIONS, WEDDING_DATE } from './constants';
-import { getGuestList, addGuestToOwner, removeGuestFromOwner } from './services/storageService';
+import { TRANSLATIONS } from './constants';
+import { subscribeToGuestList, addGuestToOwner, removeGuestFromOwner } from './services/storageService';
 import { SummaryCard } from './components/SummaryCard';
 import { GuestModal } from './components/GuestModal';
 import { Globe, Heart } from 'lucide-react';
@@ -13,11 +13,15 @@ const App: React.FC = () => {
   const [selectedOwner, setSelectedOwner] = useState<OwnerName | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load data on mount
+  // Subscribe to Real-time Firebase updates on mount
   useEffect(() => {
-    const data = getGuestList();
-    setGuestList(data);
-    setIsLoading(false);
+    const unsubscribe = subscribeToGuestList((data) => {
+      setGuestList(data);
+      setIsLoading(false);
+    });
+
+    // Cleanup listener when app closes
+    return () => unsubscribe();
   }, []);
 
   const t = TRANSLATIONS[language];
@@ -26,7 +30,7 @@ const App: React.FC = () => {
     setLanguage(prev => prev === Language.KHMER ? Language.ENGLISH : Language.KHMER);
   };
 
-  const handleAddGuest = (name: string, plusOnes: number) => {
+  const handleAddGuest = async (name: string, plusOnes: number) => {
     if (!selectedOwner) return;
     
     const newGuest: Guest = {
@@ -36,19 +40,21 @@ const App: React.FC = () => {
       timestamp: Date.now()
     };
 
-    const updatedList = addGuestToOwner(selectedOwner, newGuest);
-    setGuestList(updatedList);
+    // We don't need to set state manually here.
+    // We send to Firebase, Firebase updates, the listener triggers, and React updates.
+    await addGuestToOwner(selectedOwner, newGuest);
   };
 
-  const handleRemoveGuest = (id: string) => {
+  const handleRemoveGuest = async (id: string) => {
     if (!selectedOwner) return;
-    const updatedList = removeGuestFromOwner(selectedOwner, id);
-    setGuestList(updatedList);
+    await removeGuestFromOwner(selectedOwner, id);
   };
 
   // Calculate Grand Total
   const grandTotal = (Object.values(guestList) as Guest[][]).reduce((total, list) => {
-    return total + list.reduce((subTotal, guest) => subTotal + 1 + guest.plusOnes, 0);
+    // Ensure list is an array before reducing (safety check)
+    const validList = Array.isArray(list) ? list : [];
+    return total + validList.reduce((subTotal, guest) => subTotal + 1 + guest.plusOnes, 0);
   }, 0);
 
   if (isLoading) return (
