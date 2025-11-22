@@ -67,10 +67,10 @@ export const GuestModal: React.FC<GuestModalProps> = ({
         {/* Header */}
         <div className="flex-none px-8 pt-8 pb-4 bg-white z-20 flex items-start justify-between">
             <div>
-                <h2 className={`font-black text-slate-900 leading-relaxed pb-1 ${language === Language.KHMER ? 'text-3xl' : 'text-4xl'}`}>
+                <h2 className={`font-black text-slate-900 leading-relaxed pb-1 px-1 -mx-1 ${language === Language.KHMER ? 'text-3xl' : 'text-4xl'}`}>
                     {displayName}
                 </h2>
-                <p className="text-primary-500 font-bold text-lg mt-1 uppercase tracking-wider leading-normal pb-1">
+                <p className="text-primary-500 font-bold text-lg mt-1 uppercase tracking-wider leading-normal pb-1 px-1">
                     {translations.total}: {totalHeadcount}
                 </p>
             </div>
@@ -89,7 +89,7 @@ export const GuestModal: React.FC<GuestModalProps> = ({
                     <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mb-4">
                         <User className="w-10 h-10" strokeWidth={1.5} />
                     </div>
-                    <p className="text-lg font-bold">{translations.noGuestsYet}</p>
+                    <p className="text-lg font-bold px-2">{translations.noGuestsYet}</p>
                 </div>
             ) : (
                 guests.map((guest) => (
@@ -98,9 +98,9 @@ export const GuestModal: React.FC<GuestModalProps> = ({
                         className="bg-white pl-6 pr-4 py-5 rounded-3xl shadow-[0_2px_10px_rgba(0,0,0,0.03)] border border-slate-100 flex items-center justify-between group"
                     >
                         <div className="flex-1 min-w-0 pr-4">
-                            <h4 className="text-2xl font-bold text-slate-900 truncate leading-normal pb-1">{guest.name}</h4>
+                            <h4 className="text-2xl font-bold text-slate-900 truncate leading-normal pb-1 px-1 -mx-1">{guest.name}</h4>
                             {guest.plusOnes > 0 && (
-                                <div className="flex items-center gap-1.5 text-primary-600 font-bold text-base mt-1 leading-normal pb-0.5">
+                                <div className="flex items-center gap-1.5 text-primary-600 font-bold text-base mt-1 leading-normal pb-0.5 px-1 -mx-1">
                                     <Plus className="w-4 h-4" strokeWidth={3} />
                                     <span>{guest.plusOnes} {translations.guests}</span>
                                 </div>
@@ -135,7 +135,7 @@ export const GuestModal: React.FC<GuestModalProps> = ({
                             value={newName}
                             onChange={(e) => setNewName(e.target.value)}
                             placeholder={translations.guestNamePlaceholder}
-                            className="w-full h-16 pl-6 pr-4 bg-white rounded-2xl shadow-sm border-2 border-transparent focus:border-primary-500 focus:ring-0 font-bold placeholder:text-slate-300 text-xl text-slate-900 outline-none transition-all pb-1"
+                            className="w-full h-16 pl-6 pr-4 bg-white rounded-2xl shadow-sm border-2 border-transparent focus:border-primary-500 focus:ring-0 font-bold placeholder:text-slate-300 text-xl text-slate-900 outline-none transition-all pb-1 px-1"
                         />
                     </div>
                     
@@ -149,7 +149,7 @@ export const GuestModal: React.FC<GuestModalProps> = ({
                             <Minus className="w-5 h-5 font-bold" strokeWidth={3} />
                         </button>
                         <div className="w-10 text-center">
-                             <span className="text-xl font-black text-slate-900 pb-0.5 block">{newPlusOnes}</span>
+                             <span className="text-xl font-black text-slate-900 pb-0.5 block px-1">{newPlusOnes}</span>
                         </div>
                         <button 
                             type="button"
@@ -164,7 +164,7 @@ export const GuestModal: React.FC<GuestModalProps> = ({
                 <button
                     type="submit"
                     disabled={!newName.trim()}
-                    className="w-full h-16 bg-primary-500 text-white font-black text-xl rounded-2xl shadow-lg shadow-primary-200 hover:bg-primary-600 active:scale-[0.98] transition-all disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed flex items-center justify-center gap-2 pb-1"
+                    className="w-full h-16 bg-primary-500 text-white font-black text-xl rounded-2xl shadow-lg shadow-primary-200 hover:bg-primary-600 active:scale-[0.98] transition-all disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed flex items-center justify-center gap-2 pb-1 px-1"
                 >
                     {translations.addGuest}
                 </button>

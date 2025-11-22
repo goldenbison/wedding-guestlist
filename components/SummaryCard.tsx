@@ -25,21 +25,21 @@ export const SummaryCard: React.FC<SummaryCardProps> = ({ ownerName, guests, onC
       
       {/* Top Label */}
       <div className="w-full text-left z-10">
-        <h3 className={`font-black text-slate-900 truncate leading-relaxed pb-1 text-xl`}>
+        <h3 className={`font-black text-slate-900 truncate leading-relaxed pb-1 px-1 -mx-1 text-xl`}>
           {displayName}
         </h3>
       </div>
       
       {/* Center Count */}
       <div className="flex flex-col items-center z-10 mt-1">
-        <span className="text-5xl font-black text-primary-500 tracking-tighter leading-none">
+        <span className="text-5xl font-black text-primary-500 tracking-tighter leading-none px-1">
           {totalCount}
         </span>
       </div>
 
       {/* Bottom Label */}
       <div className="w-full flex items-center justify-between z-10 mt-auto pt-2">
-        <span className="text-sm font-bold text-slate-400 uppercase tracking-widest leading-normal pb-0.5">
+        <span className="text-sm font-bold text-slate-400 uppercase tracking-widest leading-normal pb-0.5 px-0.5">
           {language === Language.KHMER ? 'ភ្ញៀវ' : 'GUESTS'}
         </span>
         <div className="w-7 h-7 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-primary-50 group-hover:text-primary-500 transition-colors">
