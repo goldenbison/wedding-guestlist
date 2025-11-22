@@ -1,19 +1,19 @@
-import { initializeApp } from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import { getDatabase } from 'firebase/database';
 
-// Cast import.meta to any to avoid TypeScript error: Property 'env' does not exist on type 'ImportMeta'
-const env = (import.meta as any).env;
-
-// These values will come from Netlify's Environment Variables
+// Using hardcoded configuration to ensure deployment works immediately.
 const firebaseConfig = {
-  apiKey: env.VITE_FIREBASE_API_KEY,
-  authDomain: env.VITE_FIREBASE_AUTH_DOMAIN,
-  databaseURL: env.VITE_FIREBASE_DATABASE_URL,
-  projectId: env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: env.VITE_FIREBASE_APP_ID
+  apiKey: "AIzaSyBcpryD1YY0YBAF6drySou0T6grGtMHZFA",
+  authDomain: "wedding-guestlist-e5a6c.firebaseapp.com",
+  databaseURL: "https://wedding-guestlist-e5a6c-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "wedding-guestlist-e5a6c",
+  storageBucket: "wedding-guestlist-e5a6c.firebasestorage.app",
+  messagingSenderId: "51436709712",
+  appId: "1:51436709712:web:a46cbf4da783d2102fee55",
+  measurementId: "G-RP0P9V5ZVW"
 };
 
-const app = initializeApp(firebaseConfig);
-export const db = getDatabase(app);
+// Fix: Use compat initializeApp to resolve missing export error in some environments
+const app = firebase.initializeApp(firebaseConfig);
+// Cast to any to avoid type mismatch between compat App and modular FirebaseApp
+export const db = getDatabase(app as any);
