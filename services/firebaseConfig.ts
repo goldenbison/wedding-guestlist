@@ -1,4 +1,4 @@
-import firebase from 'firebase/compat/app';
+import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 
 // Using hardcoded configuration to ensure deployment works immediately.
@@ -13,7 +13,8 @@ const firebaseConfig = {
   measurementId: "G-RP0P9V5ZVW"
 };
 
-// Fix: Use compat initializeApp to resolve missing export error in some environments
-const app = firebase.initializeApp(firebaseConfig);
-// Cast to any to avoid type mismatch between compat App and modular FirebaseApp
-export const db = getDatabase(app as any);
+// Initialize Firebase using the standard modular SDK
+const app = initializeApp(firebaseConfig);
+
+// Export the database instance
+export const db = getDatabase(app);
